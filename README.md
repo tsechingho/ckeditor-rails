@@ -10,7 +10,7 @@ The `ckeditor_rails` gem integrates the `CKEditor` with the Rails asset pipeline
 
 Include `ckeditor_rails` in Gemefile
 
-    gem 'ckeditor_rails'
+    gem 'ckeditor_rails', :require => 'ckeditor-rails'
 
 Then run `bundle install`
 
@@ -55,7 +55,7 @@ Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
-    rake update-ckeditor
+    rake update-ckeditor VERSION=3.6.2
 
 Publish gem.
 
