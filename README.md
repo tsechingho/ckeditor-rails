@@ -2,15 +2,15 @@
 
 [CKEditor](http://ckeditor.com/) is a library for WYSIWYG editor to be used inside web pages.
 
-The `ckeditor-rails` gem integrates the `CKEditor` with the Rails asset pipeline.
+The `ckeditor_rails` gem integrates the `CKEditor` with the Rails asset pipeline.
 
 ## Usage
 
-### Install ckeditor-rails gem
+### Install ckeditor_rails gem
 
-Include `ckeditor-rails` in Gemefile
+Include `ckeditor_rails` in Gemefile
 
-    gem 'ckeditor-rails'
+    gem 'ckeditor_rails'
 
 Then run `bundle install`
 
@@ -51,7 +51,7 @@ Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
 
 ## Gem maintainance
 
-Maintain `ckeditor-rails` gem with `Rake` commands.
+Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
