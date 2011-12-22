@@ -1,4 +1,4 @@
-# Chosen for rails asset pipeline
+# CKEditor for rails asset pipeline
 
 [CKEditor](http://ckeditor.com/) is a library for WYSIWYG editor to be used inside web pages.
 
