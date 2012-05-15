@@ -7,6 +7,7 @@ task "update-ckeditor" do
   files = SourceFile.new
   files.fetch ENV['VERSION']
   files.move
-  files.fix
+  files.fix_css
+  files.fix_js
   files.cleanup
 end

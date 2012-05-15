@@ -50,8 +50,8 @@ class SourceFile < Thor
     directory "ckeditor/themes", "javascripts/ckeditor/themes"
   end
 
-  desc "fix", "fix some css caused precompile error"
-  def fix
+  desc "fix_css", "fix some css caused precompilation error"
+  def fix_css
     self.destination_root = "vendor/assets"
     inside destination_root do
       skin_names = %w{kama office2003 v2}
@@ -60,6 +60,17 @@ class SourceFile < Thor
         gsub_file "stylesheets/ckeditor/skins/#{name}/editor.css", /filter\:\;/, ""
       end
       gsub_file "stylesheets/ckeditor/skins/office2003/editor.css", /\!height\:28px\;\!line-height\:28px\;/, ""
+    end
+  end
+
+  desc 'fix_js', 'fix some js caused execution error'
+  def fix_js
+    self.destination_root = "vendor/assets"
+    inside destination_root do
+      # Change the way IE detected to avoid compilation bug in production
+      %w{ckeditor ckeditor_basic}.each do |name|
+        gsub_file "javascripts/ckeditor/#{name}.js", "/*@cc_on!@*/false", "b.indexOf('msie')>-1"
+      end
     end
   end
 
