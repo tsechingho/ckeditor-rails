@@ -45,7 +45,7 @@ class SourceFile < Thor
     directory "ckeditor/plugins", "javascripts/ckeditor/plugins"
     move_image_files_of_plugins
 
-    copy_image_files_of_skin(%w{kama office2003 v2 BootstrapCK-Skin})
+    copy_image_files_of_skin(%w{BootstrapCK-Skin})
 
     directory "ckeditor/themes", "javascripts/ckeditor/themes"
   end
@@ -54,12 +54,12 @@ class SourceFile < Thor
   def fix_css
     self.destination_root = "vendor/assets"
     inside destination_root do
-      skin_names = %w{kama office2003 v2 BootstrapCK-Skin}
+      skin_names = %w{BootstrapCK-Skin}
       skin_names.each do |name|
         gsub_file "stylesheets/ckeditor/skins/#{name}/dialog.css", /\+margin/, "margin"
         gsub_file "stylesheets/ckeditor/skins/#{name}/editor.css", /filter\:\;/, ""
       end
-      gsub_file "stylesheets/ckeditor/skins/office2003/editor.css", /\!height\:28px\;\!line-height\:28px\;/, ""
+      # gsub_file "stylesheets/ckeditor/skins/office2003/editor.css", /\!height\:28px\;\!line-height\:28px\;/, ""
     end
   end
 
@@ -78,7 +78,7 @@ class SourceFile < Thor
   def convert
     self.destination_root = "vendor/assets"
     inside destination_root do
-      skin_names = %w{kama office2003 v2 BootstrapCK-Skin}
+      skin_names = %w{BootstrapCK-Skin}
       skin_names.each do |name|
         path = "stylesheets/ckeditor/skins/#{name}"
         run("sass-convert -F css -T sass #{path}/dialog.css #{path}/dialog.css.sass")
@@ -125,7 +125,7 @@ class SourceFile < Thor
     end
   end
 
-  def copy_image_files_of_skin(skin_names = %w{kama office2003 v2})
+  def copy_image_files_of_skin(skin_names = %w{BootstrapCK-Skin})
     skin_names.each do |name|
       copy_file "ckeditor/skins/#{name}/dialog.css", "stylesheets/ckeditor/skins/#{name}/dialog.css"
       copy_file "ckeditor/skins/#{name}/editor.css", "stylesheets/ckeditor/skins/#{name}/editor.css"
