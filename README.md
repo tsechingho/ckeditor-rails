@@ -49,13 +49,13 @@ Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
       padding:4 20px;
     }
 
-## Gem maintainance
+## Gem maintenance
 
 Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
-    rake update-ckeditor VERSION=3.6.3
+    rake update-ckeditor VERSION=3.6.4
 
 Publish gem.
 
