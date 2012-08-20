@@ -60,6 +60,7 @@ class SourceFile < Thor
         gsub_file "stylesheets/ckeditor/skins/#{name}/editor.css", /filter\:\;/, ""
       end
       gsub_file "stylesheets/ckeditor/skins/office2003/editor.css", /\!height\:28px\;\!line-height\:28px\;/, ""
+      gsub_file "javascripts/ckeditor/plugins/uicolor/yui/assets/yui.css", /\*html/, "* html"
     end
   end
 
