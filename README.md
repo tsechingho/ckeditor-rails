@@ -10,7 +10,7 @@ The `ckeditor_rails` gem integrates the `CKEditor` with the Rails asset pipeline
 
 Include `ckeditor_rails` in Gemefile
 
-    gem 'ckeditor_rails', :require => 'ckeditor-rails'
+    gem 'ckeditor_rails'
 
 Then run `bundle install`
 
