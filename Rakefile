@@ -6,8 +6,7 @@ desc "Update CKEditor Library, VERSION is required."
 task "update-ckeditor" do
   files = SourceFile.new
   files.fetch ENV['VERSION']
+  files.destination_root = "vendor/assets"
   files.move
-  files.fix_css
-  files.fix_js
   files.cleanup
 end
