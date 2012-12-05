@@ -62,7 +62,7 @@ class SourceFile < Thor
   end
 
   def extract file_path, output_path
-    system "tar -C '#{output_path}' -xzf '#{file_path}' ckeditor"
+    system "tar -x -f '#{file_path}' -C '#{output_path}' ckeditor"
   end
 
   def copy_plugins
