@@ -16,7 +16,7 @@ Then run `bundle install`
 
 ### Include CKEditor javascript assets
 
-Add to your `app/assets/stylesheets/application.js` after `//= require jquery_ujs` to work with jQuery
+Add to your `app/assets/javascripts/application.js` after `//= require jquery_ujs` to work with jQuery
 
     //= require ckeditor-jquery
 
