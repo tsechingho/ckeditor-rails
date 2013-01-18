@@ -19,29 +19,14 @@ class SourceFile < Thor
       end
     end
 
-    inside 'lib' do
-      gsub_file 'ckeditor-rails/version.rb', /VERSION\s=\s'(\d|\.)+'$/ do |match|
-        %Q{VERSION = '#{version}'}
-      end
-    end if File.exist? source_root
+    bump_version version
   end
 
   desc 'move', 'move source files'
   def move
     FileUtils.rm_rf destination_root
-
-    [
-      ['js', 'javascripts'],
-      ['css', 'stylesheets'],
-    ].each do |(type, asset_path)|
-      Dir["#{source_root}/ckeditor/*.#{type}"].each do |file|
-        file = File.basename file
-        copy_file "ckeditor/#{file}", "#{asset_path}/ckeditor/#{file}"
-      end
-    end
-
-    copy_file 'ckeditor/LICENSE.md', 'javascripts/ckeditor/LICENSE.md'
-    directory 'ckeditor/lang', 'javascripts/ckeditor/lang'
+    copy_files_in_source_root
+    copy_langs
     copy_plugins
     copy_skins
   end
@@ -65,30 +50,60 @@ class SourceFile < Thor
     system "tar -x -f '#{file_path}' -C '#{output_path}' ckeditor"
   end
 
+  def bump_version version
+    return unless File.exist? source_root
+    inside 'lib' do
+      gsub_file 'ckeditor-rails/version.rb', /VERSION\s=\s'(\d|\.)+'$/ do |match|
+        %Q{VERSION = '#{version}'}
+      end
+    end
+  end
+
+  def copy_files_in_source_root
+    [
+      ['js', 'javascripts'],
+      ['css', 'stylesheets'],
+      ['md', 'javascripts'],
+    ].each do |(type, asset_path)|
+      batch_copy '.', type, asset_path, "*.#{type}"
+    end
+  end
+
+  def copy_langs
+    directory 'ckeditor/lang', 'javascripts/ckeditor/lang'
+  end
+
   def copy_plugins
     Dir["#{source_root}/ckeditor/plugins/*"].each do |plugin|
-      copy_all "plugins/#{File.basename plugin}"
+      path = "plugins/#{File.basename plugin}"
+      copy_assets path
+      batch_copy path, 'html', 'javascripts'
+      batch_copy path, 'md', 'javascripts'
     end
+    # ckeditor.js would lookup 'plugins/icons.png'
+    file = 'ckeditor/plugins/icons.png'
+    copy_file file, "images/#{file}"
   end
 
   def copy_skins
     Dir["#{source_root}/ckeditor/skins/*"].each do |skin|
-      copy_all "skins/#{File.basename skin}"
+      copy_assets "skins/#{File.basename skin}"
     end
   end
 
-  def copy_all path
-    copy_type path, 'css', 'stylesheets'
-    copy_type path, 'js', 'javascripts'
-    copy_type path, 'png', 'images'
-    copy_type path, 'gif', 'images'
-    copy_type path, 'jpg', 'images'
+  def copy_assets path
+    batch_copy path, 'css', 'stylesheets'
+    batch_copy path, 'js', 'javascripts'
+    batch_copy path, 'png', 'images'
+    batch_copy path, 'gif', 'images'
+    batch_copy path, 'jpg', 'images'
   end
 
-  def copy_type path, type, asset_path
-    files = Dir["#{source_root}/ckeditor/#{path}/**/*.#{type}"]
+  def batch_copy path, type, asset_path, pattern = nil
+    pattern ||= "#{path}/**/*.#{type}"
+    files = Dir["#{source_root}/ckeditor/#{pattern}"]
     files.each do |file|
-      file = file.sub /^#{Regexp.escape source_root}\//, ''
+      file.sub! /^#{Regexp.escape source_root}\//, ''
       copy_file file, "#{asset_path}/#{file}"
     end
   end
