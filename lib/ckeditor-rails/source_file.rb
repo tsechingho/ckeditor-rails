@@ -1,16 +1,16 @@
-require "thor"
+require 'thor'
 
 class SourceFile < Thor
   include Thor::Actions
   source_root 'tmp'
 
-  desc "fetch VERSION", "fetch source files from http://ckeditor.com/"
+  desc 'fetch VERSION', 'fetch source files from http://ckeditor.com/'
   def fetch version
     download_url = file_url version
     archive_file = "#{source_root}/#{filename(version)}"
 
     in_root do
-      say_status "       fetch", archive_file, :green
+      say_status '       fetch', archive_file, :green
       get download_url, archive_file
       if File.exist? archive_file
         FileUtils.mkdir_p source_root
@@ -19,14 +19,14 @@ class SourceFile < Thor
       end
     end
 
-    inside "lib" do
-      gsub_file "ckeditor-rails/version.rb", /VERSION\s=\s"(\d|\.)+"$/ do |match|
-        %Q{VERSION = "#{version}"}
+    inside 'lib' do
+      gsub_file 'ckeditor-rails/version.rb', /VERSION\s=\s'(\d|\.)+'$/ do |match|
+        %Q{VERSION = '#{version}'}
       end
     end if File.exist? source_root
   end
 
-  desc "move", "move source files"
+  desc 'move', 'move source files'
   def move
     FileUtils.rm_rf destination_root
 
@@ -40,13 +40,13 @@ class SourceFile < Thor
       end
     end
 
-    copy_file "ckeditor/LICENSE.md", "javascripts/ckeditor/LICENSE.md"
-    directory "ckeditor/lang", "javascripts/ckeditor/lang"
+    copy_file 'ckeditor/LICENSE.md', 'javascripts/ckeditor/LICENSE.md'
+    directory 'ckeditor/lang', 'javascripts/ckeditor/lang'
     copy_plugins
     copy_skins
   end
 
-  desc "clean", "clean up useless files"
+  desc 'clean', 'clean up useless files'
   def cleanup
     FileUtils.rm_rf source_root
   end
