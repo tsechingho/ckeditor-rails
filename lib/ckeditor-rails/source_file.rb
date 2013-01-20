@@ -31,6 +31,14 @@ class SourceFile < Thor
     copy_skins
   end
 
+  desc 'fix_css', 'fix some css caused precompilation error'
+  def fix_css
+    self.destination_root = 'vendor/assets/stylesheets/ckeditor'
+    inside destination_root do
+      gsub_file 'skins/moono/dialog_iequirks.css',  /\{filter\:\}/, '{}'
+    end
+  end
+
   desc 'clean', 'clean up useless files'
   def cleanup
     FileUtils.rm_rf source_root
