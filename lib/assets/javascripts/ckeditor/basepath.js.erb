@@ -1,1 +1,1 @@
-var CKEDITOR_BASEPATH = '<%= Rails.application.config.assets.prefix + "/ckeditor/" %>';
+var CKEDITOR_BASEPATH = '<%= (Rails.application.config.action_controller.asset_host || "") + Rails.application.config.assets.prefix + "/ckeditor/" %>';
