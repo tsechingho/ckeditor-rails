@@ -1,1 +1,6 @@
-var CKEDITOR_BASEPATH = '<%= Rails.application.config.assets.prefix + "/ckeditor/" %>';
+<%
+base_path = ''
+base_path << Rails.application.config.assets.prefix
+base_path << '/ckeditor/'
+%>
+var CKEDITOR_BASEPATH = '<%= base_path %>';
