@@ -61,8 +61,8 @@ class SourceFile < Thor
   def bump_version version
     return unless File.exist? source_root
     inside 'lib' do
-      gsub_file 'ckeditor-rails/version.rb', /VERSION\s=\s'(\d|\.)+'$/ do |match|
-        %Q{VERSION = '#{version}'}
+      gsub_file 'ckeditor-rails/version.rb', /EDITOR_VERSION\s=\s'(\d|\.)+'$/ do |match|
+        %Q{EDITOR_VERSION = '#{version}'}
       end
     end
   end
