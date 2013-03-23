@@ -4,7 +4,7 @@
 
 The `ckeditor_rails` gem integrates the `CKEditor` with the Rails asset pipeline.
 
-## Usage
+## Basic Usage
 
 ### Install ckeditor_rails gem
 
@@ -26,6 +26,8 @@ Add `ckeditor` class to text area tag
 
     <%= f.text_area :content, :class => 'ckeditor' %>
 
+## Advanced Usage
+
 ### Include customized configuration javascript for CKEditor
 
 Add your `app/assets/javascripts/ckeditor/config.js.coffee` like
@@ -34,6 +36,20 @@ Add your `app/assets/javascripts/ckeditor/config.js.coffee` like
       config.language = "zh"
       config.uiColor = "#AADC6E"
       true
+
+### Include customized CKEDITOR_BASEPATH setting
+
+Add your `app/assets/javascripts/ckeditor/basepath.js.coffee` like
+
+    <%
+      base_path = ''
+      if ENV['PROJECT'] =~ /editor/i
+        base_path << "/#{Rails.root.basename.to_s}/"
+      end
+      base_path << Rails.application.config.assets.prefix
+      base_path << '/ckeditor/'
+    %>
+    var CKEDITOR_BASEPATH = '<%= base_path %>';
 
 ### Include customized stylesheet for contents of CKEditor
 
