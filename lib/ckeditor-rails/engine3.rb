@@ -1,6 +1,6 @@
 module Ckeditor
   module Rails
-    class Railtie < ::Rails::Railtie
+    class Engine < ::Rails::Engine
       initializer 'ckeditor.assets.precompile', group: :all do |app|
         app.config.assets.precompile += %W(
           ckeditor/*.js

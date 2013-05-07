@@ -4,6 +4,11 @@
 
 The `ckeditor_rails` gem integrates the `CKEditor` with the Rails asset pipeline.
 
+And it would work with following environments:
+
+* ruby 1.9.3+
+* rails 3.0+
+
 ## Basic Usage
 
 ### Install ckeditor_rails gem
@@ -71,7 +76,7 @@ Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
-    rake update_ckeditor VERSION=4.1
+    rake update_ckeditor VERSION=4.1.1
 
 Publish gem.
 
