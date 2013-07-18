@@ -9,6 +9,10 @@ module Ckeditor
         ckeditor/*.html
         ckeditor/*.md
       )
+
+      rake_tasks do
+        load "ckeditor-rails/tasks.rake"
+      end
     end
   end
 end
