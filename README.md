@@ -31,6 +31,13 @@ Add `ckeditor` class to text area tag
 
     <%= f.text_area :content, :class => 'ckeditor' %>
 
+
+### Deployment
+
+Since version 4.1.3, `chosen-rails` will compile non-digested assets after digested assets were compiled.
+
+Eric Anderson, thanks.
+
 ## Advanced Usage
 
 ### Include customized configuration javascript for CKEditor
@@ -76,7 +83,7 @@ Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
-    rake update_ckeditor VERSION=4.1.1
+    rake update_ckeditor VERSION=4.1.2
 
 Publish gem.
 

@@ -1,6 +1,6 @@
 module Ckeditor
   module Rails
-    VERSION = '4.1.2'
+    VERSION = '4.1.3'
     EDITOR_VERSION = '4.1.2'
   end
 end
