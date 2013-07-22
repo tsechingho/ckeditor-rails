@@ -34,7 +34,7 @@ Add `ckeditor` class to text area tag
 
 ### Deployment
 
-Since version 4.1.3, `chosen-rails` will compile non-digested assets after digested assets were compiled.
+Since version 4.1.3, non-digested assets of `ckeditor-rails` will simply be copied after digested assets were compiled.
 
 Eric Anderson, thanks.
 
