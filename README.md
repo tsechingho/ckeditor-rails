@@ -51,7 +51,7 @@ Add your `app/assets/javascripts/ckeditor/config.js.coffee` like
 
 ### Include customized CKEDITOR_BASEPATH setting
 
-Add your `app/assets/javascripts/ckeditor/basepath.js.coffee` like
+Add your `app/assets/javascripts/ckeditor/basepath.js.erb` like
 
     <%
       base_path = ''
