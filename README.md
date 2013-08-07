@@ -83,7 +83,7 @@ Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
-    rake update_ckeditor VERSION=4.1.2
+    rake update_ckeditor VERSION=4.2
 
 Publish gem.
 
