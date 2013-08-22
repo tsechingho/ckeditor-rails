@@ -32,6 +32,12 @@ Add `ckeditor` class to text area tag
     <%= f.text_area :content, :class => 'ckeditor' %>
 
 
+### Initialize CKEditor in Javascript file
+
+    $('.ckeditor').ckeditor({
+      // optional config
+    });
+
 ### Deployment
 
 Since version 4.1.3, non-digested assets of `ckeditor-rails` will simply be copied after digested assets were compiled.
