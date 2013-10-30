@@ -108,9 +108,9 @@ https://github.com/rails/turbolinks/#opting-out-of-turbolinks
 
 **Example**
 
-        <div class="example" data-no-turbolink>
-        ...
-        </div>
+    <div class="example" data-no-turbolink>
+    ...
+    </div>
 
 ## License
 
