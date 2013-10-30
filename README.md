@@ -95,6 +95,22 @@ Publish gem.
 
     rake release
 
+## Troubleshooting
+
+#### CKEditor only loading after page refresh
+
+This is due to interference with Turbolinks -
+
+The problem stems from the link itself so in order to resolve this issue you must disable turbolinks in the div containing the link pointing to where CKEditor is.
+
+You can visit the Rails Turbolinks Repo for detailed documentation
+https://github.com/rails/turbolinks/#opting-out-of-turbolinks
+
+**Example**
+        <div class="example" data-no-turbolink>
+        ...
+        </div>
+
 ## License
 
 CKEditor use [CKEditor license](http://ckeditor.com/license).
