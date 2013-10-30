@@ -107,6 +107,7 @@ You can visit the Rails Turbolinks Repo for detailed documentation
 https://github.com/rails/turbolinks/#opting-out-of-turbolinks
 
 **Example**
+
         <div class="example" data-no-turbolink>
         ...
         </div>
