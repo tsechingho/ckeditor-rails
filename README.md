@@ -57,7 +57,7 @@ Eric Anderson, thanks.
 
 Add your `app/assets/javascripts/ckeditor/config.js.coffee` like
 
-```
+``` coffee
 CKEDITOR.editorConfig = (config) ->
   config.language = "zh"
   config.uiColor = "#AADC6E"
@@ -105,7 +105,9 @@ Ckeditor::Rails.configure do |config|
   # default is nil for all languages, or set as %w[en zh]
   config.assets_languages = nil
 
-  # default is nil for all plugins, or set as %w[image link liststyle table tabletools]
+  # default is nil for all plugins, 
+  # or set as white list: %w[image link liststyle table tabletools]
+  # or set as black list: config.default_plugins - %w[about a11yhelp]
   config.assets_plugins = nil
 
   # default is nil for all skins, or set as %w[moon]
