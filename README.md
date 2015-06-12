@@ -15,7 +15,9 @@ And it would work with following environments:
 
 Include `ckeditor_rails` in Gemefile
 
-    gem 'ckeditor_rails'
+```ruby
+gem 'ckeditor_rails'
+```
 
 Then run `bundle install`
 
@@ -23,20 +25,25 @@ Then run `bundle install`
 
 Add to your `app/assets/javascripts/application.js` after `//= require jquery_ujs` to work with jQuery
 
-    //= require ckeditor-jquery
+``` javascript
+//= require ckeditor-jquery
+```
 
 ### Modify form field for CKEditor
 
 Add `ckeditor` class to text area tag
 
-    <%= f.text_area :content, :class => 'ckeditor' %>
-
+``` ruby
+<%= f.text_area :content, :class => 'ckeditor' %>
+```
 
 ### Initialize CKEditor in Javascript file
 
-    $('.ckeditor').ckeditor({
-      // optional config
-    });
+``` javascript
+$('.ckeditor').ckeditor({
+  // optional config
+});
+```
 
 ### Deployment
 
@@ -50,38 +57,61 @@ Eric Anderson, thanks.
 
 Add your `app/assets/javascripts/ckeditor/config.js.coffee` like
 
-    CKEDITOR.editorConfig = (config) ->
-      config.language = "zh"
-      config.uiColor = "#AADC6E"
-      true
+```
+CKEDITOR.editorConfig = (config) ->
+  config.language = "zh"
+  config.uiColor = "#AADC6E"
+  true
+```
 
 ### Include customized CKEDITOR_BASEPATH setting
 
 Add your `app/assets/javascripts/ckeditor/basepath.js.erb` like
 
-    <%
-      base_path = ''
-      if ENV['PROJECT'] =~ /editor/i
-        base_path << "/#{Rails.root.basename.to_s}/"
-      end
-      base_path << Rails.application.config.assets.prefix
-      base_path << '/ckeditor/'
-    %>
-    var CKEDITOR_BASEPATH = '<%= base_path %>';
+``` ruby
+<%
+  base_path = ''
+  if ENV['PROJECT'] =~ /editor/i
+    base_path << "/#{Rails.root.basename.to_s}/"
+  end
+  base_path << Rails.application.config.assets.prefix
+  base_path << '/ckeditor/'
+%>
+var CKEDITOR_BASEPATH = '<%= base_path %>';
+```
 
 ### Include customized stylesheet for contents of CKEditor
 
 Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
 
-    body {
-      font-size: 14px;
-      color: gray;
-      background-color: yellow;
-    }
-    ol,ul,dl {
-      *margin-right:0px;
-      padding:4 20px;
-    }
+``` scss
+body {
+  font-size: 14px;
+  color: gray;
+  background-color: yellow;
+}
+ol,ul,dl {
+  *margin-right:0px;
+  padding:4 20px;
+}
+```
+
+### Configure plugins, languages, and skins of CKEditor assets
+
+Add `ckeditor_rails.rb` to `config/initializers/`
+
+``` ruby
+Ckeditor::Rails.configure do |config|
+  # default is nil for all languages, or set as %w[en zh]
+  config.assets_languages = nil
+
+  # default is nil for all plugins, or set as %w[image link liststyle table tabletools]
+  config.assets_plugins = nil
+
+  # default is nil for all skins, or set as %w[moon]
+  config.assets_skins = nil
+end
+```
 
 ## Gem maintenance
 
