@@ -105,7 +105,7 @@ Ckeditor::Rails.configure do |config|
   # default is nil for all languages, or set as %w[en zh]
   config.assets_languages = nil
 
-  # default is nil for all plugins, 
+  # default is nil for all plugins,
   # or set as white list: %w[image link liststyle table tabletools]
   # or set as black list: config.default_plugins - %w[about a11yhelp]
   config.assets_plugins = nil
@@ -121,7 +121,7 @@ Maintain `ckeditor_rails` gem with `Rake` commands.
 
 Update origin CKEditor source files.
 
-    rake update_ckeditor VERSION=4.4.7
+    rake update_ckeditor VERSION=4.5.1
 
 Publish gem.
 
