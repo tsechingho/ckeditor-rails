@@ -144,6 +144,14 @@ https://github.com/rails/turbolinks/#opting-out-of-turbolinks
     ...
     </div>
 
+#### Asset Compilation Process Does Not Produce JS and/or CSS Files
+
+If you observe an issue (especially in Heroku environment) where asset compilation process skips JS and or CSS files, try adding the following line to `app/environments/production.rb` (or config file for the environment where you observe the issue):
+
+``` ruby
+config.assets.precompile += ['ckeditor/*']
+```
+
 ## License
 
 CKEditor use [CKEditor license](http://ckeditor.com/license).
