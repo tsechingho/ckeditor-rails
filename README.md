@@ -110,7 +110,7 @@ Ckeditor::Rails.configure do |config|
   # or set as black list: config.default_plugins - %w[about a11yhelp]
   config.assets_plugins = nil
 
-  # default is nil for all skins, or set as %w[moon]
+  # default is nil for all skins, or set as %w[moono]
   config.assets_skins = nil
 end
 ```
