@@ -1,6 +1,6 @@
 <%
-  base_path = Rails.application.config.assets.prefix + '/ckeditor/'
-  base_path = Rails.application.config.action_controller.relative_url_root + base_path if Rails.application.config.action_controller.relative_url_root
+  base_path = File.join(Rails.application.config.assets.prefix, 'ckeditor/')
+  base_path = File.join(Rails.application.config.action_controller.relative_url_root, base_path) if Rails.application.config.action_controller.relative_url_root
 %>
 
 var CKEDITOR_BASEPATH = "<%= base_path %>";
