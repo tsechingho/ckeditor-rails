@@ -35,7 +35,7 @@ class SourceFile < Thor
   def fix_css
     self.destination_root = 'vendor/assets/stylesheets/ckeditor'
     inside destination_root do
-      gsub_file 'skins/moono/dialog_iequirks.css',  /\{filter\:\}/, '{}'
+      # gsub_file 'skins/moono-lisa/dialog_iequirks.css',  /\{filter\:\}/, '{}'
     end
   end
 
