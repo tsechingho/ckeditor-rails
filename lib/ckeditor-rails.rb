@@ -12,6 +12,9 @@ module Ckeditor
     mattr_accessor :assets_skins
     @@assets_skins = nil
 
+    mattr_writer :assets_base_path
+    @@assets_base_path = nil
+
     class << self
       def configure
         yield self
@@ -50,6 +53,27 @@ module Ckeditor
 
       def default_skins
         %w[moono-lisa]
+      end
+
+      def default_base_path
+        "#{::Sprockets::Railtie.config.assets.prefix}/ckeditor"
+      end
+
+      def assets_base_path
+        return @@assets_base_path unless @@assets_base_path.nil?
+
+        if @@assets_base_path.respond_to? :call
+          self.assets_base_path = @@assets_base_path.call
+        elsif !@@assets_base_path.is_a? String
+          self.assets_base_path = default_base_path
+        end
+
+        relative_path = ::Rails.application.config.action_controller.relative_url_root
+        self.assets_base_path = File.join(relative_path, @@assets_base_path) if relative_path && @@assets_base_path
+
+        self.assets_base_path = @@assets_base_path.sub(/\/\z/, '') if @@assets_base_path.ends_with?('/')
+
+        @@assets_base_path
       end
     end
 

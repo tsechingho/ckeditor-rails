@@ -8,11 +8,17 @@ module Ckeditor
         @stylesheet_files ||= ::Ckeditor::Rails::Asset.new.stylesheet_files
       end
 
+      def self.assets_base_path(context = nil)
+        return ::Ckeditor::Rails.assets_base_path unless context
+
+        "#{context.assets_prefix}/ckeditor"
+      end
+
       def self.call(input)
         return { data: input[:data] } unless stylesheet_files.include?(input[:filename])
 
         context = input[:environment].context_class.new(input)
-        path_prefix = "#{context.assets_prefix}/ckeditor"
+        path_prefix = assets_base_path()
         matched_folders = input[:filename].match(/\/ckeditor\/(plugins|skins)\/([\w-]+)\//)
 
         data = input[:data].gsub(REGEX) { |_match|
