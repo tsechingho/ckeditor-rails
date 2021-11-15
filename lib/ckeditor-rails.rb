@@ -49,7 +49,7 @@ module Ckeditor
       end
 
       def default_skins
-        %w[moono]
+        %w[moono-lisa]
       end
     end
 

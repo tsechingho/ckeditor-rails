@@ -11,10 +11,10 @@ module Ckeditor
 
       def image_files
         path = root.join('images', name)
-        files = Dir.glob(path.join('plugins', '**', '*.{png,gif,jpg}')).reject { |file|
+        files = Dir.glob(path.join('plugins', '**', '*.{png,gif,jpg,svg}')).reject { |file|
           invalid_plugin_file?(file)
         }
-        files += Dir.glob(path.join('skins', '**', '*.{png,gif,jpg}')).reject { |file|
+        files += Dir.glob(path.join('skins', '**', '*.{png,gif,jpg,svg}')).reject { |file|
           invalid_skin_file?(file)
         }
         files
