@@ -96,7 +96,7 @@ ol,ul,dl {
 }
 ```
 
-### Configure plugins, languages, and skins of CKEditor assets
+### Configure plugins, languages, skins and base_path of CKEditor assets
 
 Add `ckeditor_rails.rb` to `config/initializers/`
 
@@ -112,6 +112,12 @@ Ckeditor::Rails.configure do |config|
 
   # default is nil for all skins, or set as %w[moono-lisa]
   config.assets_skins = nil
+
+  # default is nil and it will be "#{::Sprockets::Railtie.config.assets.prefix}/ckeditor",
+  # or set as String like '/assets/ckeditor',
+  # or set as Proc / Lambda
+  # no slash in the end
+  config.assets_base_path = nil
 end
 ```
 

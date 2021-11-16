@@ -26,9 +26,11 @@ class SourceFile < Thor
   def move
     FileUtils.rm_rf destination_root
     copy_files_in_source_root
+    copy_adapters
     copy_langs
     copy_plugins
     copy_skins
+    copy_vendors
   end
 
   desc 'fix_css', 'fix some css caused precompilation error'
@@ -77,6 +79,10 @@ class SourceFile < Thor
     end
   end
 
+  def copy_adapters
+    directory 'ckeditor/adapters', 'javascripts/ckeditor/adapters'
+  end
+
   def copy_langs
     directory 'ckeditor/lang', 'javascripts/ckeditor/lang'
   end
@@ -91,6 +97,8 @@ class SourceFile < Thor
     # ckeditor.js would lookup 'plugins/icons.png'
     file = 'ckeditor/plugins/icons.png'
     copy_file file, "images/#{file}"
+    file = 'ckeditor/plugins/icons_hidpi.png'
+    copy_file file, "images/#{file}"
   end
 
   def copy_skins
@@ -99,12 +107,17 @@ class SourceFile < Thor
     end
   end
 
+  def copy_vendors
+    directory 'ckeditor/vendor', 'javascripts/ckeditor/vendor'
+  end
+
   def copy_assets path
     batch_copy path, 'css', 'stylesheets'
     batch_copy path, 'js', 'javascripts'
     batch_copy path, 'png', 'images'
     batch_copy path, 'gif', 'images'
     batch_copy path, 'jpg', 'images'
+    batch_copy path, 'svg', 'images'
   end
 
   def batch_copy path, type, asset_path, pattern = nil
