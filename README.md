@@ -64,6 +64,43 @@ CKEDITOR.editorConfig = (config) ->
   true
 ```
 
+### Remove CKEditor addon services
+
+To avoid see warnings like
+
+``` js
+ckeditor.source.js:21 [CKEDITOR] Error code: exportpdf-no-token-url.
+ckeditor.source.js:21 [CKEDITOR] For more information about this error go to https://ckeditor.com/docs/ckeditor4/latest/guide/dev_errors.html#exportpdf-no-token-url
+```
+
+Edit your `app/assets/javascripts/ckeditor/config.js.coffee` like
+
+``` coffee
+CKEDITOR.editorConfig = (config) ->
+  config.removePlugins = 'exportpdf'
+  true
+```
+
+Ref: https://ckeditor.com/cke4/addon/exportpdf
+
+### Configure CKEditor addon services
+
+Edit your `app/assets/javascripts/ckeditor/config.js.coffee` like
+
+``` coffee
+CKEDITOR.editorConfig = (config) ->
+  true
+
+# Install the plugin manually and copy to Rails asset pathes like vendor/assets/javascripts/ckeditor/plugins/exportpdf
+CKEDITOR.plugins.addExternal('exportpdf', './ckeditor/plugins/exportpdf/')
+
+CKEDITOR.replace('editor', {
+  exportPdf_tokenUrl: 'https://example.com/cs-token-endpoint'
+})
+```
+
+Ref: https://ckeditor.com/docs/ckeditor4/latest/features/exporttopdf.html#configuration
+
 ### Include customized stylesheet for contents of CKEditor
 
 Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
