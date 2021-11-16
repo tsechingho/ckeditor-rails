@@ -64,22 +64,6 @@ CKEDITOR.editorConfig = (config) ->
   true
 ```
 
-### Include customized CKEDITOR_BASEPATH setting
-
-Add your `app/assets/javascripts/ckeditor/basepath.js.erb` like
-
-``` ruby
-<%
-  base_path = ''
-  if ENV['PROJECT'] =~ /editor/i
-    base_path << "/#{Rails.root.basename.to_s}/"
-  end
-  base_path << Rails.application.config.assets.prefix
-  base_path << '/ckeditor/'
-%>
-var CKEDITOR_BASEPATH = '<%= base_path %>';
-```
-
 ### Include customized stylesheet for contents of CKEditor
 
 Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
@@ -120,6 +104,30 @@ Ckeditor::Rails.configure do |config|
   config.assets_base_path = nil
 end
 ```
+
+### Include customized CKEDITOR_BASEPATH setting
+
+`Ckeditor::Rails::AssetUrlProcessor` will post process css `url()` attribute in all css files of ckeditor based on `Ckeditor::Rails.assets_base_path`.
+`CKEDITOR_BASEPATH` will be defined with `Ckeditor::Rails.assets_base_path` directly.
+It is important to keep these two the same.
+
+Edit your `config/initializers/ckeditor_rails.rb` like
+
+``` ruby
+Ckeditor::Rails.configure do |config|
+  config.assets_base_path = Proc.new {
+    base_path = ''
+    if ENV['PROJECT'] =~ /editor/i
+      base_path << "/#{Rails.root.basename.to_s}/"
+    end
+    base_path << Rails.application.config.assets.prefix
+    base_path << '/ckeditor'
+    base_path
+  }
+end
+```
+
+Note: if `Rails.application.config.action_controller.relative_url_root` is set, it will prepend to `Ckeditor::Rails.assets_base_path` automatically.
 
 ## Gem maintenance
 
