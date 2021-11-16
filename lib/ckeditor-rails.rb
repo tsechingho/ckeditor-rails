@@ -56,7 +56,9 @@ module Ckeditor
       end
 
       def default_base_path
-        "#{::Sprockets::Railtie.config.assets.prefix}/ckeditor"
+        return "#{::Sprockets::Railtie.config.assets.prefix}/ckeditor" if defined? ::Sprockets
+
+        "#{::Rails.application.config.assets.prefix}/ckeditor"
       end
 
       def assets_base_path

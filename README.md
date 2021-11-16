@@ -64,6 +64,22 @@ CKEDITOR.editorConfig = (config) ->
   true
 ```
 
+### Include customized stylesheet for contents of CKEditor
+
+Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
+
+``` scss
+body {
+  font-size: 14px;
+  color: gray;
+  background-color: yellow;
+}
+ol,ul,dl {
+  *margin-right:0px;
+  padding:4 20px;
+}
+```
+
 ### Remove CKEditor addon services
 
 To avoid see warnings like
@@ -104,22 +120,6 @@ CKEDITOR.editorConfig = (config) ->
 ```
 
 Ref: https://ckeditor.com/docs/ckeditor4/latest/features/exporttopdf.html#configuration
-
-### Include customized stylesheet for contents of CKEditor
-
-Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
-
-``` scss
-body {
-  font-size: 14px;
-  color: gray;
-  background-color: yellow;
-}
-ol,ul,dl {
-  *margin-right:0px;
-  padding:4 20px;
-}
-```
 
 ### Configure plugins, languages, skins and base_path of CKEditor assets
 
