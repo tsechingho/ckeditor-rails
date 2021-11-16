@@ -85,18 +85,22 @@ Ref: https://ckeditor.com/cke4/addon/exportpdf
 
 ### Configure CKEditor addon services
 
+Install the plugin manually by copy to Rails asset pathes like
+
+``` shell
+vendor/assets/images/ckeditor/plugins/exportpdf/icons
+vendor/assets/javascripts/ckeditor/plugins/exportpdf/lang
+vendor/assets/javascripts/ckeditor/plugins/exportpdf/plugin.js
+vendor/assets/javascripts/ckeditor/plugins/exportpdf/LICENSE.md
+```
+
 Edit your `app/assets/javascripts/ckeditor/config.js.coffee` like
 
 ``` coffee
 CKEDITOR.editorConfig = (config) ->
+  # config.extraPlugins = 'exportpdf'
+  config.exportPdf_tokenUrl = 'https://example.com/cs-token-endpoint'
   true
-
-# Install the plugin manually and copy to Rails asset pathes like vendor/assets/javascripts/ckeditor/plugins/exportpdf
-CKEDITOR.plugins.addExternal('exportpdf', './ckeditor/plugins/exportpdf/')
-
-CKEDITOR.replace('editor', {
-  exportPdf_tokenUrl: 'https://example.com/cs-token-endpoint'
-})
 ```
 
 Ref: https://ckeditor.com/docs/ckeditor4/latest/features/exporttopdf.html#configuration
@@ -142,11 +146,12 @@ Ckeditor::Rails.configure do |config|
 end
 ```
 
-### Include customized CKEDITOR_BASEPATH setting
+### Configure customized CKEDITOR_BASEPATH setting
 
-`Ckeditor::Rails::AssetUrlProcessor` will post process css `url()` attribute in all css files of ckeditor based on `Ckeditor::Rails.assets_base_path`.
-`CKEDITOR_BASEPATH` will be defined with `Ckeditor::Rails.assets_base_path` directly.
 It is important to keep these two the same.
+
+  * `Ckeditor::Rails::AssetUrlProcessor` will post process css `url()` attribute in all css files of ckeditor based on `Ckeditor::Rails.assets_base_path`.
+  * `CKEDITOR_BASEPATH` will be defined with `Ckeditor::Rails.assets_base_path` directly.
 
 Edit your `config/initializers/ckeditor_rails.rb` like
 
