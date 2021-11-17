@@ -10,7 +10,9 @@ module Ckeditor
       # Follow sprockets-rails 3.3.0+ to use postprocessor of Sprockets
       # https://github.com/rails/sprockets-rails/blob/v3.3.0/lib/sprockets/railtie.rb#L121
       initializer 'ckeditor.asset_url_processor' do |app|
-        if ::Sprockets.respond_to? :register_postprocessor
+        # Processors of Sprockets 2.x should inherit from Tilt::Template
+        # Processors of Sprockets 3+ should respond to :call
+        if Gem::Version.new(::Sprockets::VERSION) > Gem::Version.new('3')
           ::Sprockets.register_postprocessor 'text/css', ::Ckeditor::Rails::AssetUrlProcessor
         end
       end

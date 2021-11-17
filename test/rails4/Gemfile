@@ -45,4 +45,8 @@ group :development do
   gem 'spring', '< 3'
 end
 
+# To test older sprockets
+# gem 'sprockets', '< 3'
+# gem 'sprockets-rails', '< 3'
+
 gem 'ckeditor_rails', path: '../..'
