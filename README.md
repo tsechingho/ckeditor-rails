@@ -64,6 +64,14 @@ CKEDITOR.editorConfig = (config) ->
   true
 ```
 
+Type `CKEDITOR.config` in browser's console panel to check all configuration.
+
+Add your `config.js` to assets precompile list in `config/initializers/assets.rb`.
+
+``` ruby
+Rails.application.config.assets.precompile += %w( ckeditor/config.js )
+```
+
 ### Include customized stylesheet for contents of CKEditor
 
 Add your `app/assets/stylesheets/ckeditor/contents.css.scss` like
@@ -78,6 +86,12 @@ ol,ul,dl {
   *margin-right:0px;
   padding:4 20px;
 }
+```
+
+Add your `contents.css` to assets precompile list in `config/initializers/assets.rb`.
+
+``` ruby
+Rails.application.config.assets.precompile += %w( ckeditor/contents.css )
 ```
 
 ### Remove CKEditor addon services
@@ -207,6 +221,8 @@ If you observe an issue (especially in Heroku environment) where asset compilati
 ``` ruby
 config.assets.precompile += ['ckeditor/*']
 ```
+
+Run `bundle exec rake assets:precompile` and `ls -al public/assets/ckeditor/` to check if everything is generated as expected.
 
 ## License
 
