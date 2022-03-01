@@ -85,7 +85,7 @@ end
 require 'ckeditor-rails/asset'
 
 case ::Rails.version.to_s
-when /^[456]/
+when /^[4567]/
   require 'ckeditor-rails/engine'
 when /^3\.[12]/
   require 'ckeditor-rails/engine3'
